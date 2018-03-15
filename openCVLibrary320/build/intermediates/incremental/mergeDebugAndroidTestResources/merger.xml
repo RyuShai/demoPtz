@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="__tested_artifact__::openCVLibrary320$Generated" generated="true"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/intermediates/packaged_res/debug"/></dataSet><dataSet config="__tested_artifact__::openCVLibrary320" from-dependency="true" generated-set="__tested_artifact__::openCVLibrary320$Generated"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/intermediates/packaged_res/debug"><file path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/intermediates/packaged_res/debug/values/values.xml" qualifiers=""><declare-styleable name="CameraBridgeViewBase">
+       <attr format="boolean" name="show_fps"/>
+       <attr format="integer" name="camera_id">
+          <enum name="any" value="-1"/>
+          <enum name="back" value="99"/>
+          <enum name="front" value="98"/>
+       </attr>
+    </declare-styleable></file></source></dataSet><dataSet config="androidTest$Generated" generated="true"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/src/androidTest/res"/><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/generated/res/rs/androidTest/debug"/><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/generated/res/resValues/androidTest/debug"/></dataSet><dataSet config="androidTest" generated-set="androidTest$Generated"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/src/androidTest/res"/><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/generated/res/rs/androidTest/debug"/><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/build/generated/res/resValues/androidTest/debug"/></dataSet><dataSet config="androidTestDebug$Generated" generated="true"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/src/androidTestDebug/res"/></dataSet><dataSet config="androidTestDebug" generated-set="androidTestDebug$Generated"><source path="/home/vp9/Documents/demoPtz/openCVLibrary320/src/androidTestDebug/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CameraBridgeViewBase">
+       <attr format="boolean" name="show_fps"/>
+       <attr format="integer" name="camera_id">
+          <enum name="any" value="-1"/>
+          <enum name="back" value="99"/>
+          <enum name="front" value="98"/>
+       </attr>
+    </declare-styleable></configuration></mergedItems></merger>

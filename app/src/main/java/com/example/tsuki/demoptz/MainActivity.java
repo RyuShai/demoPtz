@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
             String agent = String.format(formatAgent, getString(R.string.app_name), info.versionName, "Android");
+            Log.e("ryu", "agent: "+ agent);
             Call<LoginData> call = SeverApiHelper.getInstance().getAPIService().login(RequestBusiness.login(username, "", password, agent));
             call.enqueue(new Callback<LoginData>() {
                 @Override

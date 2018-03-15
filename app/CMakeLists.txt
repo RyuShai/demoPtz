@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 # point to local openCV installation, relative to the directory of CMakeLists.txt
-set(pathToOpenCv /home/ryu/Software/OpenCV-android-sdk) #sua lai duong dan cho nay
+set(pathToOpenCv /home/vp9/Downloads/OpenCV-android-sdk) #sua lai duong dan cho nay
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 

@@ -118,8 +118,13 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
     int site_id;
     private String nvr_id;
     String videoUrl="";
+    int finalResult=0;
     /////////
-
+    void setFinalResult(int value)
+    {
+        finalResult =value;
+        Log.e("ryu","final result aparture: "+  value);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,15 +190,16 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
         hide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mp.start();
-//                            textureView.setAlpha(0);
-                            img.setAlpha(0f);
-                        }
-                    }, 5000);
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mp.start();
+////                            textureView.setAlpha(0);
+//                            img.setAlpha(0f);
+//                        }
+//                    }, 5000);
+                CallJavaMethod();
 
             }
         });
@@ -284,8 +290,10 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
     }
 
     public native String stringFromJNI();
+    public native boolean getVideoFrame();
     public native int getIntfromMat(long matAdrr);
     public native void setInt2Mat(long matAdrr, int value);
+    public native void CallJavaMethod();
 
     @Override
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
@@ -368,7 +376,7 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
 //        Log.e("ryu","onSurfaceTextureUpdated");
-        if(isRun)
+        if(getVideoFrame())
         {
             if(frameCount<1500)
             {
@@ -452,7 +460,7 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
             }
             rcdState = RecordState.EXPOSURE_150;
             isRun = true;
-            setExposureTime();
+            setExposureTime(150);
         }else if(rcdState==RecordState.EXPOSURE_150)
         {
             ///////////////////
@@ -526,8 +534,12 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
                     //set video url then init texture view
                     videoUrl = detail0.optString("src");
                     Log.e("ryu","url: "+videoUrl);
+                    String[] arrStr = videoUrl.split("/");
+                    videoUrl = "http://"+arrStr[2]+"/live/nal/0/"+arrStr[arrStr.length-1];
+
+                    Log.e("ryu","url: "+videoUrl);
                     //set exposure time
-                    setExposureTime();
+                    setExposureTime(150);
                     // set url to MediaPlayer
                     videoUrl = "http://4co2.vp9.tv/chn/DNG101/v.m3u8";
                     textureView.setSurfaceTextureListener(ScreenBrightnessChange.this);
@@ -535,20 +547,17 @@ public class ScreenBrightnessChange extends AppCompatActivity implements
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<JsonElement> call, Throwable t) {
 
             }
         });
     }
-    void setExposureTime()
+    void setExposureTime(int value)
     {
-        Log.e("ryu","setExposureTime");
-        if(rcdState == RecordState.EXPOSURE_50)
-            PTZController.getInstance().sendExposureTime(nvr_id, cameraID, 50);
-        else if(rcdState == RecordState.EXPOSURE_150)
-            PTZController.getInstance().sendExposureTime(nvr_id, cameraID, 150);
+        Log.e("ryu","setExposureTime "+ value);
+        PTZController.getInstance().sendExposureTime(nvr_id, cameraID, value);
+
     }
 
     private void connectSocket(String token) {
